@@ -1,0 +1,3063 @@
+/*! Made with Bones: http://themble.com/bones :) */
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Main Stylesheet
+
+Here's where the magic happens. Here, you'll see we are calling in
+the separate media queries. The base mobile goes outside any query
+and is called at the beginning, after that we call the rest
+of the styles inside media queries.
+
+Helpful articles on Sass file organization:
+http://thesassway.com/advanced/modular-css-naming-conventions
+
+******************************************************************/
+/*********************
+IMPORTING PARTIALS
+These files are needed at the beginning so that we establish all
+our mixins, functions, and variables that we'll be using across
+the whole project.
+*********************/
+/* normalize.css 2012-07-07T09:50 UTC - http://github.com/necolas/normalize.css */
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+/**
+ * Correct `block` display not defined in IE 8/9.
+ */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block;
+}
+
+/**
+ * Correct `inline-block` display not defined in IE 8/9.
+ */
+audio,
+canvas,
+video {
+  display: inline-block;
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/**
+ * Address `[hidden]` styling not present in IE 8/9.
+ * Hide the `template` element in IE, Safari, and Firefox < 22.
+ */
+[hidden],
+template {
+  display: none;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
+
+/**
+ * Remove default margin.
+ */
+body {
+  margin: 0;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+a {
+  background: transparent;
+}
+
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+a:focus {
+  outline: thin dotted;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+a:active,
+a:hover {
+  outline: 0;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari 5, and Chrome.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/**
+ * Address styling not present in IE 8/9, Safari 5, and Chrome.
+ */
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
+ */
+b,
+strong,
+.strong {
+  font-weight: bold;
+}
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+dfn,
+em,
+.em {
+  font-style: italic;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+/*
+ * proper formatting (http://blog.fontdeck.com/post/9037028497/hyphens)
+*/
+p {
+  -webkit-hyphens: auto;
+  -epub-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
+/*
+ * Addresses margins set differently in IE6/7.
+ */
+pre {
+  margin: 0;
+}
+
+/**
+ * Correct font family set oddly in Safari 5 and Chrome.
+ */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, serif;
+  font-size: 1em;
+}
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+pre {
+  white-space: pre-wrap;
+}
+
+/**
+ * Set consistent quote types.
+ */
+q {
+  quotes: "\201C" "\201D" "\2018" "\2019";
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+small, .small {
+  font-size: 75%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+/* ==========================================================================
+  Lists
+========================================================================== */
+/*
+ * Addresses margins set differently in IE6/7.
+ */
+dl,
+menu,
+ol,
+ul {
+  margin: 1em 0;
+}
+
+dd {
+  margin: 0;
+}
+
+/*
+ * Addresses paddings set differently in IE6/7.
+ */
+menu {
+  padding: 0 0 0 40px;
+}
+
+ol,
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+/*
+ * Corrects list images handled incorrectly in IE7.
+ */
+nav ul,
+nav ol {
+  list-style: none;
+  list-style-image: none;
+}
+
+/* ==========================================================================
+  Embedded content
+========================================================================== */
+/**
+ * Remove border when inside `a` element in IE 8/9.
+ */
+img {
+  border: 0;
+}
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+/**
+ * Address margin not present in IE 8/9 and Safari 5.
+ */
+figure {
+  margin: 0;
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+/**
+ * Define consistent border, margin, and padding.
+ */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * 1. Correct font family not being inherited in all browsers.
+ * 2. Correct font size not being inherited in all browsers.
+ * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
+ */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+}
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+button,
+input {
+  line-height: normal;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+button,
+select {
+  text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+/**
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* 2 */
+  box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/**
+ * 1. Remove default vertical scrollbar in IE 8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+textarea {
+  overflow: auto;
+  /* 1 */
+  vertical-align: top;
+  /* 2 */
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+/**
+ * Remove most spacing between table cells.
+ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.image-replacement,
+.ir {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.clearfix, .cf {
+  zoom: 1;
+}
+.clearfix:before, .clearfix:after, .cf:before, .cf:after {
+  content: "";
+  display: table;
+}
+.clearfix:after, .cf:after {
+  clear: both;
+}
+
+/*
+use the best ampersand
+http://simplebits.com/notebook/2008/08/14/ampersands-2/
+*/
+span.amp {
+  font-family: Baskerville,'Goudy Old Style',Palatino,'Book Antiqua',serif !important;
+  font-style: italic;
+}
+
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Variables
+
+Here is where we declare all our variables like colors, fonts,
+base values, and defaults. We want to make sure this file ONLY
+contains variables that way our files don't get all messy.
+No one likes a mess.
+
+******************************************************************/
+/*********************
+COLORS
+Need help w/ choosing your colors? Try this site out:
+http://0to255.com/
+*********************/
+/*
+Here's a great tutorial on how to
+use color variables properly:
+http://sachagreif.com/sass-color-variables/
+*/
+/******************************************************************
+Site Name: birding
+Author: art19
+
+Stylesheet: Typography
+
+Need to import a font or set of icons for your site? Drop them in
+here or just use this to establish your typographical grid. Or not.
+Do whatever you want to...GOSH!
+
+Helpful Articles:
+http://trentwalton.com/2012/06/19/fluid-type/
+http://ia.net/blog/responsive-typography-the-basics/
+http://alistapart.com/column/responsive-typography-is-a-physical-discipline
+
+******************************************************************/
+/*********************
+FONT FACE (IN YOUR FACE)
+*********************/
+/*  To embed your own fonts, use this syntax
+  and place your fonts inside the
+  library/fonts folder. For more information
+  on embedding fonts, go to:
+  http://www.fontsquirrel.com/
+  Be sure to remove the comment brackets.
+*/
+/*  @font-face {
+      font-family: 'Font Name';
+      src: url('library/fonts/font-name.eot');
+      src: url('library/fonts/font-name.eot?#iefix') format('embedded-opentype'),
+             url('library/fonts/font-name.woff') format('woff'),
+             url('library/fonts/font-name.ttf') format('truetype'),
+             url('library/fonts/font-name.svg#font-name') format('svg');
+      font-weight: normal;
+      font-style: normal;
+  }
+*/
+/*
+The following is based of Typebase:
+https://github.com/devinhunt/typebase.css
+I've edited it a bit, but it's a nice starting point.
+*/
+/*
+ i imported this one in the functions file so bones would look sweet.
+ don't forget to remove it for your site.
+*/
+/*
+some nice typographical defaults
+more here: http://www.newnet-soft.com/blog/csstypography
+*/
+p {
+  -ms-word-wrap: break-word;
+  word-break: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+  -webkit-hyphenate-before: 2;
+  -webkit-hyphenate-after: 3;
+  hyphenate-lines: 3;
+  -webkit-font-feature-settings: "liga", "dlig";
+  -moz-font-feature-settings: "liga=1, dlig=1";
+  -ms-font-feature-settings: "liga", "dlig";
+  -o-font-feature-settings: "liga", "dlig";
+  font-feature-settings: "liga", "dlig";
+}
+
+@font-face {
+  font-family: 'roboto_condensedbold';
+  src: url("fonts/robotocondensed-bold-webfont.woff2") format("woff2"), url("fonts/robotocondensed-bold-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'roboto_condensedlight';
+  src: url("fonts/robotocondensed-light-webfont.woff2") format("woff2"), url("fonts/robotocondensed-light-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'roboto_condensedregular';
+  src: url("fonts/robotocondensed-regular-webfont.woff2") format("woff2"), url("fonts/robotocondensed-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'ralewaybold';
+  src: url("fonts/raleway-bold-webfont.woff2") format("woff2"), url("fonts/raleway-bold-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'ralewayextrabold';
+  src: url("fonts/raleway-extrabold-webfont.woff2") format("woff2"), url("fonts/raleway-extrabold-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'ralewaylight';
+  src: url("fonts/raleway-light-webfont.woff2") format("woff2"), url("fonts/raleway-light-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'ralewaysemibold';
+  src: url("fonts/raleway-semibold-webfont.woff2") format("woff2"), url("fonts/raleway-semibold-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'ralewayregular';
+  src: url("fonts/raleway-regular-webfont.woff2") format("woff2"), url("fonts/raleway-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Sass Functions
+
+You can do a lot of really cool things in Sass. Functions help you
+make repeated actions a lot easier. They are really similar to mixins,
+but can be used for so much more.
+
+Anyway, keep them all in here so it's easier to find when you're
+looking for one.
+
+For more info on functions, go here:
+http://sass-lang.com/documentation/Sass/Script/Functions.html
+
+******************************************************************/
+/*********************
+COLOR FUNCTIONS
+These are helpful when you're working
+with shadows and such things. It's essentially
+a quicker way to write RGBA.
+
+Example:
+box-shadow: 0 0 4px black(0.3);
+compiles to:
+box-shadow: 0 0 4px rgba(0,0,0,0.3);
+*********************/
+/*********************
+RESPONSIVE HELPER FUNCTION
+If you're creating a responsive site, then
+you've probably already read
+Responsive Web Design: http://www.abookapart.com/products/responsive-web-design
+
+Here's a nice little helper function for calculating
+target / context
+as mentioned in that book.
+
+Example:
+width: cp(650px, 1000px);
+or
+width: calc-percent(650px, 1000px);
+both compile to:
+width: 65%;
+*********************/
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Mixins Stylesheet
+
+This is where you can take advantage of Sass' great features: Mixins.
+I won't go in-depth on how they work exactly,
+there are a few articles below that will help do that. What I will
+tell you is that this will help speed up simple changes like
+changing a color or adding CSS3 techniques gradients.
+
+A WORD OF WARNING: It's very easy to overdo it here. Be careful and
+remember less is more.
+
+Helpful:
+http://sachagreif.com/useful-sass-mixins/
+http://thesassway.com/intermediate/leveraging-sass-mixins-for-cleaner-code
+http://web-design-weekly.com/blog/2013/05/12/handy-sass-mixins/
+
+******************************************************************/
+/*********************
+TRANSITION
+*********************/
+/*
+I totally rewrote this to be cleaner and easier to use.
+You'll need to be using Sass 3.2+ for these to work.
+Thanks to @anthonyshort for the inspiration on these.
+USAGE: @include transition(all 0.2s ease-in-out);
+*/
+/*********************
+CSS3 GRADIENTS
+Be careful with these since they can
+really slow down your CSS. Don't overdo it.
+*********************/
+/* @include css-gradient(#dfdfdf,#f8f8f8); */
+/*********************
+BOX SIZING
+*********************/
+/* @include box-sizing(border-box); */
+/* NOTE: value of "padding-box" is only supported in Gecko. So
+probably best not to use it. I mean, were you going to anyway? */
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Grid Stylesheet
+
+I've seperated the grid so you can swap it out easily. It's
+called at the top the style.scss stylesheet.
+
+There are a ton of grid solutions out there. You should definitely
+experiment with your own. Here are some recommendations:
+
+http://gridsetapp.com - Love this site. Responsive Grids made easy.
+http://susy.oddbird.net/ - Grids using Compass. Very elegant.
+http://gridpak.com/ - Create your own responsive grid.
+https://github.com/dope/lemonade - Neat lightweight grid.
+
+
+The grid below is a custom built thingy I modeled a bit after
+Gridset. It's VERY basic and probably shouldn't be used on
+your client projects. The idea is you learn how to roll your
+own grids. It's better in the long run and allows you full control
+over your project's layout.
+
+******************************************************************/
+.last-col {
+  float: right;
+  padding-right: 0 !important;
+}
+
+/*
+Mobile Grid Styles
+These are the widths for the mobile grid.
+There are four types, but you can add or customize
+them however you see fit.
+*/
+@media (max-width: 767px) {
+  .m-all {
+    float: left;
+    padding-right: 0.75em;
+    width: 100%;
+    padding-right: 0;
+  }
+
+  .m-1of2 {
+    float: left;
+    padding-right: 0.75em;
+    width: 50%;
+  }
+
+  .m-1of3 {
+    float: left;
+    padding-right: 0.75em;
+    width: 33.33%;
+  }
+
+  .m-2of3 {
+    float: left;
+    padding-right: 0.75em;
+    width: 66.66%;
+  }
+
+  .m-1of4 {
+    float: left;
+    padding-right: 0.75em;
+    width: 25%;
+  }
+
+  .m-3of4 {
+    float: left;
+    padding-right: 0.75em;
+    width: 75%;
+  }
+}
+/* Portrait tablet to landscape */
+@media (min-width: 768px) and (max-width: 1029px) {
+  .t-all {
+    float: left;
+    padding-right: 0.75em;
+    width: 100%;
+    padding-right: 0;
+  }
+
+  .t-1of2 {
+    float: left;
+    padding-right: 0.75em;
+    width: 50%;
+  }
+
+  .t-1of3 {
+    float: left;
+    padding-right: 0.75em;
+    width: 33.33%;
+  }
+
+  .t-2of3 {
+    float: left;
+    padding-right: 0.75em;
+    width: 66.66%;
+  }
+
+  .t-1of4 {
+    float: left;
+    padding-right: 0.75em;
+    width: 25%;
+  }
+
+  .t-3of4 {
+    float: left;
+    padding-right: 0.75em;
+    width: 75%;
+  }
+
+  .t-1of5 {
+    float: left;
+    padding-right: 0.75em;
+    width: 20%;
+  }
+
+  .t-2of5 {
+    float: left;
+    padding-right: 0.75em;
+    width: 40%;
+  }
+
+  .t-3of5 {
+    float: left;
+    padding-right: 0.75em;
+    width: 60%;
+  }
+
+  .t-4of5 {
+    float: left;
+    padding-right: 0.75em;
+    width: 80%;
+  }
+}
+/* Landscape to small desktop */
+@media (min-width: 1030px) {
+  .d-all {
+    float: left;
+    padding-right: 0.75em;
+    width: 100%;
+    padding-right: 0;
+  }
+
+  .d-1of2 {
+    float: left;
+    padding-right: 0.75em;
+    width: 50%;
+  }
+
+  .d-1of3 {
+    float: left;
+    padding-right: 0.75em;
+    width: 33.33%;
+  }
+
+  .d-2of3 {
+    float: left;
+    padding-right: 0.75em;
+    width: 66.66%;
+  }
+
+  .d-1of4 {
+    float: left;
+    padding-right: 0.75em;
+    width: 25%;
+  }
+
+  .d-3of4 {
+    float: left;
+    padding-right: 0.75em;
+    width: 75%;
+  }
+
+  .d-1of5 {
+    float: left;
+    padding-right: 0.75em;
+    width: 20%;
+  }
+
+  .d-2of5 {
+    float: left;
+    padding-right: 0.75em;
+    width: 40%;
+  }
+
+  .d-3of5 {
+    float: left;
+    padding-right: 0.75em;
+    width: 60%;
+  }
+
+  .d-4of5 {
+    float: left;
+    padding-right: 0.75em;
+    width: 80%;
+  }
+
+  .d-1of6 {
+    float: left;
+    padding-right: 0.75em;
+    width: 16.6666666667%;
+  }
+
+  .d-1of7 {
+    float: left;
+    padding-right: 0.75em;
+    width: 14.2857142857%;
+  }
+
+  .d-2of7 {
+    float: left;
+    padding-right: 0.75em;
+    width: 28.5714286%;
+  }
+
+  .d-3of7 {
+    float: left;
+    padding-right: 0.75em;
+    width: 42.8571429%;
+  }
+
+  .d-4of7 {
+    float: left;
+    padding-right: 0.75em;
+    width: 57.1428572%;
+  }
+
+  .d-5of7 {
+    float: left;
+    padding-right: 0.75em;
+    width: 71.4285715%;
+  }
+
+  .d-6of7 {
+    float: left;
+    padding-right: 0.75em;
+    width: 85.7142857%;
+  }
+
+  .d-1of8 {
+    float: left;
+    padding-right: 0.75em;
+    width: 12.5%;
+  }
+
+  .d-1of9 {
+    float: left;
+    padding-right: 0.75em;
+    width: 11.1111111111%;
+  }
+
+  .d-1of10 {
+    float: left;
+    padding-right: 0.75em;
+    width: 10%;
+  }
+
+  .d-1of11 {
+    float: left;
+    padding-right: 0.75em;
+    width: 9.09090909091%;
+  }
+
+  .d-1of12 {
+    float: left;
+    padding-right: 0.75em;
+    width: 8.33%;
+  }
+}
+/*********************
+IMPORTING MODULES
+Modules are reusable blocks or elements we use throughout the project.
+We can break them up as much as we want or just keep them all in one.
+I mean, you can do whatever you want. The world is your oyster. Unless
+you hate oysters, then the world is your peanut butter & jelly sandwich.
+*********************/
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Alert Styles
+
+If you want to use these alerts in your design, you can. If not,
+you can just remove this stylesheet.
+
+******************************************************************/
+.alert-help, .alert-info, .alert-error, .alert-success {
+  margin: 10px;
+  padding: 5px 18px;
+  border: 1px solid;
+}
+
+.alert-help {
+  border-color: #e8dc59;
+  background: #ebe16f;
+}
+
+.alert-info {
+  border-color: #bfe4f4;
+  background: #d5edf8;
+}
+
+.alert-error {
+  border-color: #f8cdce;
+  background: #fbe3e4;
+}
+
+.alert-success {
+  border-color: #deeaae;
+  background: #e6efc2;
+}
+
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Button Styles
+
+Buttons are a pretty important part of your site's style, so it's
+important to have a consistent baseline for them. Use this stylesheet
+to create all kinds of buttons.
+
+Helpful Links:
+http://galp.in/blog/2011/08/02/the-ui-guide-part-1-buttons/
+
+******************************************************************/
+/*********************
+BUTTON DEFAULTS
+We're gonna use a placeholder selector here
+so we can use common styles. We then use this
+to load up the defaults in all our buttons.
+
+Here's a quick video to show how it works:
+http://www.youtube.com/watch?v=hwdVpKiJzac
+
+*********************/
+.blue-btn {
+  display: inline-block;
+  position: relative;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  color: #fff;
+  font-size: 0.9em;
+  font-size: 34px;
+  line-height: 34px;
+  font-weight: normal;
+  padding: 0 24px;
+  border-radius: 4px;
+  border: 0;
+  cursor: pointer;
+  -webkit-transition: background-color 0.14s ease-in-out;
+  transition: background-color 0.14s ease-in-out;
+}
+.blue-btn:hover, .blue-btn:focus {
+  color: #fff;
+  text-decoration: none;
+  outline: none;
+}
+.blue-btn:active {
+  top: 1px;
+}
+
+/*
+An example button.
+You can use this example if you want. Just replace all the variables
+and it will create a button dependant on those variables.
+*/
+.blue-btn {
+  background-color: #2980b9;
+}
+.blue-btn:hover, .blue-btn:focus {
+  background-color: #2574a8;
+}
+.blue-btn:active {
+  background-color: #2472a4;
+}
+
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Form Styles
+
+We put all the form and button styles in here to setup a consistent
+look. If we need to customize them, we can do this in the main
+stylesheets and just override them. Easy Peasy.
+
+You're gonna see a few data-uri thingies down there. If you're not
+sure what they are, check this link out:
+http://css-tricks.com/data-uris/
+If you want to create your own, use this helpful link:
+http://websemantics.co.uk/online_tools/image_to_data_uri_convertor/
+
+******************************************************************/
+/*********************
+INPUTS
+*********************/
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+select,
+textarea,
+.field {
+  display: block;
+  height: 40px;
+  line-height: 1em;
+  padding: 0 12px;
+  margin-bottom: 14px;
+  font-size: 1em;
+  color: #5c6b80;
+  border-radius: 3px;
+  vertical-align: middle;
+  box-shadow: none;
+  border: 0;
+  width: 100%;
+  max-width: 400px;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #eaedf2;
+  -webkit-transition: background-color 0.24s ease-in-out;
+  transition: background-color 0.24s ease-in-out;
+}
+input[type="text"]:focus, input[type="text"]:active,
+input[type="password"]:focus,
+input[type="password"]:active,
+input[type="datetime"]:focus,
+input[type="datetime"]:active,
+input[type="datetime-local"]:focus,
+input[type="datetime-local"]:active,
+input[type="date"]:focus,
+input[type="date"]:active,
+input[type="month"]:focus,
+input[type="month"]:active,
+input[type="time"]:focus,
+input[type="time"]:active,
+input[type="week"]:focus,
+input[type="week"]:active,
+input[type="number"]:focus,
+input[type="number"]:active,
+input[type="email"]:focus,
+input[type="email"]:active,
+input[type="url"]:focus,
+input[type="url"]:active,
+input[type="search"]:focus,
+input[type="search"]:active,
+input[type="tel"]:focus,
+input[type="tel"]:active,
+input[type="color"]:focus,
+input[type="color"]:active,
+select:focus,
+select:active,
+textarea:focus,
+textarea:active,
+.field:focus,
+.field:active {
+  background-color: #f7f8fa;
+  outline: none;
+}
+input[type="text"].error, input[type="text"].is-invalid,
+input[type="password"].error,
+input[type="password"].is-invalid,
+input[type="datetime"].error,
+input[type="datetime"].is-invalid,
+input[type="datetime-local"].error,
+input[type="datetime-local"].is-invalid,
+input[type="date"].error,
+input[type="date"].is-invalid,
+input[type="month"].error,
+input[type="month"].is-invalid,
+input[type="time"].error,
+input[type="time"].is-invalid,
+input[type="week"].error,
+input[type="week"].is-invalid,
+input[type="number"].error,
+input[type="number"].is-invalid,
+input[type="email"].error,
+input[type="email"].is-invalid,
+input[type="url"].error,
+input[type="url"].is-invalid,
+input[type="search"].error,
+input[type="search"].is-invalid,
+input[type="tel"].error,
+input[type="tel"].is-invalid,
+input[type="color"].error,
+input[type="color"].is-invalid,
+select.error,
+select.is-invalid,
+textarea.error,
+textarea.is-invalid,
+.field.error,
+.field.is-invalid {
+  color: #fbe3e4;
+  border-color: #fbe3e4;
+  background-color: #fff;
+  background-position: 99% center;
+  background-repeat: no-repeat;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo2NDM0NDREQkYwNEIxMUUyOTI4REZGQTEzMzA2MDcyNiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo2NDM0NDREQ0YwNEIxMUUyOTI4REZGQTEzMzA2MDcyNiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjQ3ODRGRkE2RjA0QTExRTI5MjhERkZBMTMzMDYwNzI2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjY0MzQ0NERBRjA0QjExRTI5MjhERkZBMTMzMDYwNzI2Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+U8iT5wAAAedJREFUeNqk1U9I02Ecx/HtV3aIFAc1hcRDUoGXRAq0oNLA2CrsEFmHbikZu0iQYIFGYAiegkCpLipBxPpDEBMUzB0EhSG2LhG7hMR2GviPgUTvB57Bw8P3+U23B16HPX8+e/b8nt93wezZSMCnhXETF3AcB5BDCnH8Dq98ExcGHcFn8Ah3cdDni+fxnPDv9oAnTB7CKu6VCFXtChZy56LxUjt+jfuB8toSOth9wd7xWAWhqrUjYR/FRTwWJm+iIPT/w7bQf5ljiZnBg45dtKFX6H+LU8gIY8OEV6vgTkStwXWE8BPTGDHGPqNPz2mCfSOOYkA99TvCt1bhGPL68zMcwmncMuape10jrI+q4BbHi/FLn31S9z2x5tRhTc+1W506ipM+T3oRD4X+8+qtc4SqFvL0z/Fr14S+Szjis8bz9Lvvaq8cwS/wwGfdlqfPSWqTiFlX77o13u9Ym1PBs8JAytpRoy44X9Ft9E/gvbA+rYKn8NcaaMVc8UHgBw4b9/iqUQZ6hOAJFbyDcUflmsEX4a6+wTtHGfhAIUqa1U29Zc2BytouThD8x6xuN5CtMPi2CrXLZkZf/HyZoRFCP7n+QVR4PV7uI/AjGghN7OU/r1ilnqILtfpNC+o6vIFljBKYlhb/F2AAgaBsWR5wRiIAAAAASUVORK5CYII=);
+  outline-color: #fbe3e4;
+}
+input[type="text"].success, input[type="text"].is-valid,
+input[type="password"].success,
+input[type="password"].is-valid,
+input[type="datetime"].success,
+input[type="datetime"].is-valid,
+input[type="datetime-local"].success,
+input[type="datetime-local"].is-valid,
+input[type="date"].success,
+input[type="date"].is-valid,
+input[type="month"].success,
+input[type="month"].is-valid,
+input[type="time"].success,
+input[type="time"].is-valid,
+input[type="week"].success,
+input[type="week"].is-valid,
+input[type="number"].success,
+input[type="number"].is-valid,
+input[type="email"].success,
+input[type="email"].is-valid,
+input[type="url"].success,
+input[type="url"].is-valid,
+input[type="search"].success,
+input[type="search"].is-valid,
+input[type="tel"].success,
+input[type="tel"].is-valid,
+input[type="color"].success,
+input[type="color"].is-valid,
+select.success,
+select.is-valid,
+textarea.success,
+textarea.is-valid,
+.field.success,
+.field.is-valid {
+  color: #e6efc2;
+  border-color: #e6efc2;
+  background-color: #fff;
+  background-position: 99% center;
+  background-repeat: no-repeat;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo2NDM0NDRERkYwNEIxMUUyOTI4REZGQTEzMzA2MDcyNiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo2NDM0NDRFMEYwNEIxMUUyOTI4REZGQTEzMzA2MDcyNiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjY0MzQ0NERERjA0QjExRTI5MjhERkZBMTMzMDYwNzI2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjY0MzQ0NERFRjA0QjExRTI5MjhERkZBMTMzMDYwNzI2Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+7olkTQAAAfhJREFUeNqklU9oE0EUhzdroWjw0tBeWlDxkEaIp55TsCU9VKIgCrHBelA8CQ1Kr1WPbZrQ3gqtQqvGqxpQc2jBk6BIIaAGD4qNCKURpDSKiPi98gLDsJt//uBjsztvfnk7895sIPAw6/joGMThFJyAXn2+A+9gA57/TaY/eU0OeBgfhGm4DiGnsb7DAszxBz/NAdcKjMJLuNWCqagHbsscN5+L+hmH4QkMOe1L5jzFfNA2PgT34ajTuY7AGuZB0/hmh5m+gS0r8xv1zRvg+gGCHZiOwnF4DP3iB3sQkYxPd2C6CWfhB9Xwlus5+K1j4jXuaq3a+gM1H9OPcAa+7q9lPidZJqHbiIm7Wg22rsEI7FrPSzAMX/T+ADyAKSsu7Fr1KplehLvwCs5DvfBf65p+MypqRbO1FXK9utH4/QKuaqYTsG3E3INJv00Q46px3+XxanJ/Ute2/vqP4FKDza2KcdljIKdnhS0xXYULTaqmLMZFn8FFSFtvt6x70ExFCS5oUXspq2ssa7oEl1swFa+CGFdgtkHgPDyDKy02zyxNU6lXRUZb1EuHYayNNs+Yh5B0WQo+/8fpJnNTZFuzz2OpjoQ2QruSOQlMy35fEGmEGMxY9e1brxobw7TkWA1h6xfckUPb+JhGoE/Hpfvew7qUld/H9J8AAwDpw3WYrxcZ3QAAAABJRU5ErkJggg==);
+  outline-color: #e6efc2;
+}
+input[type="text"][disabled], input[type="text"].is-disabled,
+input[type="password"][disabled],
+input[type="password"].is-disabled,
+input[type="datetime"][disabled],
+input[type="datetime"].is-disabled,
+input[type="datetime-local"][disabled],
+input[type="datetime-local"].is-disabled,
+input[type="date"][disabled],
+input[type="date"].is-disabled,
+input[type="month"][disabled],
+input[type="month"].is-disabled,
+input[type="time"][disabled],
+input[type="time"].is-disabled,
+input[type="week"][disabled],
+input[type="week"].is-disabled,
+input[type="number"][disabled],
+input[type="number"].is-disabled,
+input[type="email"][disabled],
+input[type="email"].is-disabled,
+input[type="url"][disabled],
+input[type="url"].is-disabled,
+input[type="search"][disabled],
+input[type="search"].is-disabled,
+input[type="tel"][disabled],
+input[type="tel"].is-disabled,
+input[type="color"][disabled],
+input[type="color"].is-disabled,
+select[disabled],
+select.is-disabled,
+textarea[disabled],
+textarea.is-disabled,
+.field[disabled],
+.field.is-disabled {
+  cursor: not-allowed;
+  border-color: #cfcfcf;
+  opacity: 0.6;
+}
+input[type="text"][disabled]:focus, input[type="text"][disabled]:active, input[type="text"].is-disabled:focus, input[type="text"].is-disabled:active,
+input[type="password"][disabled]:focus,
+input[type="password"][disabled]:active,
+input[type="password"].is-disabled:focus,
+input[type="password"].is-disabled:active,
+input[type="datetime"][disabled]:focus,
+input[type="datetime"][disabled]:active,
+input[type="datetime"].is-disabled:focus,
+input[type="datetime"].is-disabled:active,
+input[type="datetime-local"][disabled]:focus,
+input[type="datetime-local"][disabled]:active,
+input[type="datetime-local"].is-disabled:focus,
+input[type="datetime-local"].is-disabled:active,
+input[type="date"][disabled]:focus,
+input[type="date"][disabled]:active,
+input[type="date"].is-disabled:focus,
+input[type="date"].is-disabled:active,
+input[type="month"][disabled]:focus,
+input[type="month"][disabled]:active,
+input[type="month"].is-disabled:focus,
+input[type="month"].is-disabled:active,
+input[type="time"][disabled]:focus,
+input[type="time"][disabled]:active,
+input[type="time"].is-disabled:focus,
+input[type="time"].is-disabled:active,
+input[type="week"][disabled]:focus,
+input[type="week"][disabled]:active,
+input[type="week"].is-disabled:focus,
+input[type="week"].is-disabled:active,
+input[type="number"][disabled]:focus,
+input[type="number"][disabled]:active,
+input[type="number"].is-disabled:focus,
+input[type="number"].is-disabled:active,
+input[type="email"][disabled]:focus,
+input[type="email"][disabled]:active,
+input[type="email"].is-disabled:focus,
+input[type="email"].is-disabled:active,
+input[type="url"][disabled]:focus,
+input[type="url"][disabled]:active,
+input[type="url"].is-disabled:focus,
+input[type="url"].is-disabled:active,
+input[type="search"][disabled]:focus,
+input[type="search"][disabled]:active,
+input[type="search"].is-disabled:focus,
+input[type="search"].is-disabled:active,
+input[type="tel"][disabled]:focus,
+input[type="tel"][disabled]:active,
+input[type="tel"].is-disabled:focus,
+input[type="tel"].is-disabled:active,
+input[type="color"][disabled]:focus,
+input[type="color"][disabled]:active,
+input[type="color"].is-disabled:focus,
+input[type="color"].is-disabled:active,
+select[disabled]:focus,
+select[disabled]:active,
+select.is-disabled:focus,
+select.is-disabled:active,
+textarea[disabled]:focus,
+textarea[disabled]:active,
+textarea.is-disabled:focus,
+textarea.is-disabled:active,
+.field[disabled]:focus,
+.field[disabled]:active,
+.field.is-disabled:focus,
+.field.is-disabled:active {
+  background-color: #d5edf8;
+}
+
+input[type="password"] {
+  letter-spacing: 0.3em;
+}
+
+textarea {
+  max-width: 100%;
+  min-height: 120px;
+  line-height: 1.5em;
+}
+
+select {
+  -webkit-appearance: none;
+  /* 1 */
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAHCAYAAADXhRcnAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpEOEZCMjYxMEYwNUUxMUUyOTI4REZGQTEzMzA2MDcyNiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpEOEZCMjYxMUYwNUUxMUUyOTI4REZGQTEzMzA2MDcyNiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkQ4RkIyNjBFRjA1RTExRTI5MjhERkZBMTMzMDYwNzI2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkQ4RkIyNjBGRjA1RTExRTI5MjhERkZBMTMzMDYwNzI2Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Vxkp9gAAAI9JREFUeNpidHFxucHAwKAOxE+AmJmBMPgLxDJAfJMFSKwD4kqoAClgA+P///8ZXF1dPaCGcBKh6QcQB+3evXs7WDMIAA2QB1I7gFgDj0aQFz2BGh+AOEwwUaDAQyBlCMR7cGjcC5KHaQQBuM3IAOiKTiBVhiTUDdRUhq4Oq2aoAelAahIQ5wM1zsCmBiDAADhYMJXVZ9u9AAAAAElFTkSuQmCC);
+  background-repeat: no-repeat;
+  background-position: 97.5% center;
+}
+
+/*********************
+BASE (MOBILE) SIZE
+This are the mobile styles. It's what people see on their phones. If
+you set a great foundation, you won't need to add too many styles in
+the other stylesheets. Remember, keep it light: Speed is Important.
+*********************/
+
+
+/*Inicio Main css Birding*/
+
+@font-face {
+    font-family: 'Avenir Next LT Pro Medium';
+    src: url('fonts/AvenirNextLTPro-MediumIt.eot');
+    src: url('fonts/AvenirNextLTPro-MediumIt.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AvenirNextLTPro-MediumIt.woff') format('woff'),
+        url('fonts/AvenirNextLTPro-MediumIt.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Avenir Next LT Pro';
+    src: url('fonts/AvenirNextLTPro-Demi.eot');
+    src: url('fonts/AvenirNextLTPro-Demi.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AvenirNextLTPro-Demi.woff') format('woff'),
+        url('fonts/AvenirNextLTPro-Demi.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir LT Std';
+    src: url('fonts/AvenirLTStd-Black.eot');
+    src: url('fonts/AvenirLTStd-Black.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AvenirLTStd-Black.woff') format('woff'),
+        url('fonts/AvenirLTStd-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir-Light';
+    src: url('fonts/Avenir-Light.eot');
+    src: url('fonts/Avenir-Light.eot?#iefix') format('embedded-opentype'),
+        url('fonts/Avenir-Light.woff') format('woff'),
+        url('fonts/Avenir-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir Next LT Medium';
+    src: url('fonts/AvenirNextLTPro-Medium.eot');
+    src: url('fonts/AvenirNextLTPro-Medium.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AvenirNextLTPro-Medium.woff') format('woff'),
+        url('fonts/AvenirNextLTPro-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir LT Std ';
+    src: url('fonts/AvenirLTStd-Medium.eot');
+    src: url('fonts/AvenirLTStd-Medium.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AvenirLTStd-Medium.woff') format('woff'),
+        url('fonts/AvenirLTStd-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir Next LT Bold';
+    src: url('fonts/AvenirNextLTPro-BoldIt.eot');
+    src: url('fonts/AvenirNextLTPro-BoldIt.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AvenirNextLTPro-BoldIt.woff') format('woff'),
+        url('fonts/AvenirNextLTPro-BoldIt.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Avenir-Black';
+    src: url('fonts/Avenir-Black.eot');
+    src: url('fonts/Avenir-Black.eot?#iefix') format('embedded-opentype'),
+        url('fonts/Avenir-Black.woff') format('woff'),
+        url('fonts/Avenir-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir Next LT Regular';
+    src: url('fonts/AvenirNextLTPro-Regular.eot');
+    src: url('fonts/AvenirNextLTPro-Regular.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AvenirNextLTPro-Regular.woff') format('woff'),
+        url('fonts/AvenirNextLTPro-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir Next LT Pro';
+    src: url('fonts/AvenirNextLTPro-It.eot');
+    src: url('fonts/AvenirNextLTPro-It.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AvenirNextLTPro-It.woff') format('woff'),
+        url('fonts/AvenirNextLTPro-It.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Avenir Medium';
+    src: url('fonts/Avenir-Medium.eot');
+    src: url('fonts/Avenir-Medium.eot?#iefix') format('embedded-opentype'),
+        url('fonts/Avenir-Medium.woff') format('woff'),
+        url('fonts/Avenir-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir Next Bold';
+    src: url('fonts/AvenirNextLTPro-Bold.eot');
+    src: url('fonts/AvenirNextLTPro-Bold.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AvenirNextLTPro-Bold.woff') format('woff'),
+        url('fonts/AvenirNextLTPro-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Amarillo';
+    src: url('fonts/Amarillo.eot');
+    src: url('fonts/Amarillo.eot?#iefix') format('embedded-opentype'),
+        url('fonts/Amarillo.woff') format('woff'),
+        url('fonts/Amarillo.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+a,
+a:hover {
+  text-decoration: none;
+}
+a img {
+  border: none;
+  outline: none;
+}
+input {
+  outline: none;
+}
+img {
+  max-width: 100%;
+}
+/*END Resetted labels*/
+body {
+  font-size: 16px;
+  font-family: 'Avenir Medium';
+}
+header {
+  background: #129f6b;
+  padding-bottom: 25px;
+}
+header .nav-top {
+  margin-top: 15px;
+}
+header .nav-top ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+header .nav-top ul li {
+  float: left;
+  color: #fff;
+  margin-right: 20px;
+  font-family: 'Avenir-Black';
+  font-size: 17px;
+}
+header .nav-top ul li a {
+  color: #fff;
+  padding-left: 25px;
+}
+header .nav-top ul li.icon-linea a {
+  background: url('../img/icon/icon-contacto.png') no-repeat left center;
+}
+header .nav-top ul li.icon-email a {
+  background: url('../img/icon/icon-email.png') no-repeat left center;
+}
+header .nav-top ul li.icon-usuario a {
+  background: url('../img/icon/icon-usuario.png') no-repeat left center;
+}
+header .nav-redes {
+  margin-top: 7px;
+}
+header .nav-redes ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+header .nav-redes ul li {
+  margin-right: 8px;
+  float: left;
+}
+header .nav-redes ul li a {
+  width: 33px;
+  height: 33px;
+  display: block;
+  text-indent: -9999px;
+}
+header .nav-redes ul li.icon-ws a {
+  background: url('../img/icon/icon-ws.png') no-repeat left center;
+}
+header .nav-redes ul li.icon-it a {
+  background: url('../img/icon/icon-instagram.png') no-repeat left center;
+}
+header .nav-redes ul li.icon-fb a {
+  background: url('../img/icon/icon-facebook.png') no-repeat left center;
+}
+header .main-menu {
+  margin-left: 40px;
+  margin-top: 50px;
+}
+header .main-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+header .main-menu ul li {
+  float: left;
+  margin: 0 17px;
+  color: #fff;
+  font-family: 'Avenir Next LT Pro';
+  font-size: 20px;
+}
+header .main-menu ul li a {
+  color: #fff;
+  padding-bottom: 17px;
+}
+header .main-menu ul li a:focus {
+  text-decoration: none;
+}
+header .main-menu ul li:hover a {
+  background: url('../img/background/bg-nav-hover.png') no-repeat bottom center;
+}
+header .logo-birding {
+  margin-top: 25px;
+}
+header .cart {
+  background: url('../img/icon/icon-cart.png') no-repeat top center;
+  width: 27px;
+  height: 27px;
+  margin-top: 50px;
+  margin-left: 15px;
+}
+.banner-anexo {
+  border-bottom: 10px solid #c8e55e;
+  position: relative;
+  text-align: center;
+}
+.banner-anexo img {
+  width: 100%;
+}
+.title-ppal {
+  background: url('../img/background/line-title.png') no-repeat bottom center;
+  color: #fff;
+  font-size: 50px;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  font-family: 'Amarillo';
+  top: 37%;
+  padding-bottom: 19px;
+}
+.title-ppal-2 {
+  color: #fff;
+  font-size: 45px;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 65%;
+  text-transform: uppercase;
+  font-family: 'Avenir-Black';
+}
+.cont-anexo {
+  background: #209e6d url('../img/background/bg-anexos.png') no-repeat top center;
+  padding-top: 80px;
+  padding-bottom: 70px;
+}
+.info-anexo {
+  background: #fff;
+  max-width: 375px;
+  padding: 25px 30px 20px 30px;
+  color: #979797;
+  margin-bottom: 30px;
+  height: 660px;
+  position: relative;
+  font-family: 'Avenir Medium';
+}
+.info-anexo h2 {
+  color: #abdc26;
+  margin: 0 0 20px 0;
+  font-size: 25px;
+  font-family: 'Avenir-Black';
+}
+.info-anexo figure {
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.info-anexo figure img {
+  transition: all 0.6s ease;
+}
+.info-anexo figure img:hover {
+  transform: scale(1.2);
+}
+.info-anexo p,
+.info-anexo ol,
+.info-anexo ul {
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+.info-anexo p a,
+.info-anexo ol a,
+.info-anexo ul a {
+  color: #019cd5;
+}
+.info-anexo .mas {
+  clear: both;
+  width: 100%;
+  display: block;
+  background: #2ea7b2;
+  line-height: 40px;
+  text-align: center;
+  font-weight: normal;
+  font-size: 22px;
+  color: #fff;
+  max-width: 300px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  margin: 0 auto;
+  font-family: 'Avenir-Black';
+}
+.cont-search {
+  float: left;
+  width: 250px;
+  margin-top: 9px;
+  margin-right: 20px;
+}
+.sb-search {
+  position: relative;
+  margin: 0;
+  width: 0%;
+  min-width: 25px;
+  height: 25px;
+  float: right;
+  overflow: hidden;
+  -webkit-transition: width 0.3s;
+  -moz-transition: width 0.3s;
+  transition: width 0.3s;
+  -webkit-backface-visibility: hidden;
+}
+input[type="text"].sb-search-input,
+input[type="search"].sb-search-input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  background-color: transparent;
+  width: 100%;
+  height: 25px;
+  margin: 0;
+  z-index: 10;
+  padding: 0 40px 0 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 0;
+  border-radius: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px solid #fff;
+}
+.sb-search-input::-webkit-input-placeholder {
+  color: #fff;
+}
+.sb-search-input:-moz-placeholder {
+  color: #fff;
+}
+.sb-search-input::-moz-placeholder {
+  color: #fff;
+}
+.sb-search-input:-ms-input-placeholder {
+  color: #fff;
+}
+.sb-icon-search,
+.sb-search-submit {
+  width: 25px;
+  height: 25px;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 0;
+  margin: 0;
+  line-height: 25px;
+  text-align: center;
+  cursor: pointer;
+}
+.sb-search-submit {
+  background: #fff;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  opacity: 0;
+  color: transparent;
+  border: none;
+  outline: none;
+  z-index: -1;
+}
+.sb-icon-search {
+  color: #fff;
+  background: #129f6b url('../img/icon/icon-search.png') no-repeat center center;
+  z-index: 90;
+  font-size: 22px;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+}
+.sb-search.sb-search-open,
+.no-js .sb-search {
+  width: 100%;
+}
+.sb-search.sb-search-open .sb-icon-search,
+.no-js .sb-search .sb-icon-search {
+  background: #129f6b url('../img/icon/icon-search.png') no-repeat center center;
+  color: #fff;
+  z-index: 11;
+}
+.sb-search.sb-search-open .sb-search-submit,
+.no-js .sb-search .sb-search-submit {
+  z-index: 90;
+}
+#nav-icon {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+  top: 0px;
+  left: 10px;
+  display: none;
+  z-index: 99;
+  border-radius: 50%;
+}
+#nav-icon span {
+  display: block;
+  position: absolute;
+  height: 2px;
+  width: 66%;
+  background: #fff;
+  border-radius: 9px;
+  opacity: 1;
+  left: 17%;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: 0.25s ease-in-out;
+  -moz-transition: 0.25s ease-in-out;
+  -o-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
+  z-index: 99;
+}
+#nav-icon span:nth-child(1) {
+  top: 11px;
+}
+#nav-icon span:nth-child(2),
+#nav-icon span:nth-child(3) {
+  top: 25px;
+}
+#nav-icon span:nth-child(4) {
+  top: 18px;
+}
+#nav-icon.open span:nth-child(1) {
+  left: 50%;
+  top: 18px;
+  width: 0%;
+}
+#nav-icon.open span:nth-child(2) {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  top: 18px;
+}
+#nav-icon.open span {
+  background: #fff !important;
+}
+#nav-icon.open span:nth-child(3) {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 18px;
+}
+#nav-icon.open span:nth-child(4) {
+  left: 50%;
+  top: 18px;
+  width: 0%;
+}
+.quienes-somos {
+  background-position: center 150px;
+}
+.quienes-somos p.info {
+  text-align: center;
+  color: #fff;
+  font-family: 'Avenir Medium';
+  font-size: 20px;
+  padding: 0 90px;
+  margin-bottom: 80px;
+}
+.nuestro-equipo h3 {
+  text-align: center;
+  font-family: 'Avenir-Black';
+  font-size: 30px;
+  margin: -65px 0 60px 0;
+  color: #fff;
+  clear: both;
+}
+.nuestro-equipo .info-anexo h2 {
+  font-size: 20px;
+}
+.nuestro-equipo .info-anexo p {
+  font-size: 15px;
+}
+.guias-quienes {
+  text-align: center;
+  padding: 40px 15px 0 15px;
+  clear: both;
+}
+.bg-aliados {
+  background: #eeeeee;
+  text-align: center;
+  overflow: hidden;
+  padding-top: 30px;
+  padding-bottom: 40px;
+  margin-top: 30px;
+  float: left;
+}
+.bg-aliados figure {
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 20px;
+}
+.bg-aliados h3 {
+  color: #209e6d;
+  font-size: 25px;
+  font-family: 'Avenir-Black';
+  display: block;
+  margin-bottom: 30px;
+}
+.cont-contacto {
+  padding: 40px;
+}
+.cont-contacto h2 {
+  color: #fff;
+  font-family: 'Avenir-Black';
+  font-size: 30px;
+  margin-bottom: 25px;
+  padding-left: 15px;
+}
+.cont-contacto .campos {
+  margin-bottom: 25px;
+  width: 100%;
+  clear: both;
+}
+.cont-contacto input[type="text"],
+.cont-contacto input[type="email"],
+.cont-contacto input[type="url"],
+.cont-contacto textarea {
+  width: 100%;
+  max-width: 100%;
+  background: #fff;
+  margin: 0 0 5px 0;
+  padding: 0 20px;
+  color: #000;
+  height: 40px;
+  border: 0;
+  font-size: 17px;
+}
+.cont-contacto textarea {
+  padding: 10px 20px;
+  height: 100px;
+  resize: none;
+}
+.cont-contacto label {
+  font-weight: normal;
+  margin: 0 0 10px;
+  color: #fff;
+  font-size: 17px;
+  font-family: 'Avenir Medium';
+}
+.cont-contacto input[type="submit"],
+.cont-contacto button {
+  margin-top: 0;
+  float: right;
+  height: 40px;
+  color: #209e6d;
+  background: #fff;
+  font-family: 'Avenir Medium';
+  border: 0;
+  font-size: 17px;
+  padding: 0 30px;
+}
+.top-ave {
+  background: #e5e5e5;
+  border-radius: 20px 20px 0 60px;
+  border: 3px solid #fff;
+  margin-bottom: 90px;
+  margin-top: 15px;
+  min-height: 180px;
+  padding-bottom: 50px;
+  position: relative;
+}
+.top-ave .info {
+  float: left;
+  color: #006a42;
+  font-family: 'Avenir Medium';
+  margin-left: 199px;
+  max-width: 940px;
+  padding-left: 30px;
+  padding-top: 38px;
+  position: relative;
+}
+.top-ave .info h2 {
+  border-radius: 0 15px 15px 0;
+  color: #006a42;
+  font-family: 'Avenir-Black';
+  font-size: 27px;
+  left: 0;
+  margin: 0;
+  padding: 8px 50px 8px 35px;
+  position: absolute;
+  text-align: left;
+  text-transform: uppercase;
+  top: -24px;
+  background: #c8e55e;
+}
+.top-ave .info p {
+  margin: 0;
+}
+.top-ave figure {
+  max-width: 208px;
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  z-index: 1;
+}
+.top-ave figure span {
+  width: 60px;
+  background: #e76b14;
+  border-radius: 50%;
+  bottom: 12px;
+  color: #fff;
+  font-family: 'Avenir-Black';
+  font-size: 35px;
+  height: 60px;
+  line-height: 60px;
+  position: absolute;
+  right: 17px;
+  text-align: center;
+}
+.top-ave .mas {
+  background: #2ea7b2;
+  bottom: 0;
+  color: #fff;
+  font-family: 'Avenir-Black';
+  font-size: 22px;
+  font-weight: normal;
+  line-height: 40px;
+  margin: 0 auto;
+  padding: 0 30px;
+  position: absolute;
+  right: 0;
+  text-align: center;
+}
+.galeria-hacemos {
+  height: 510px;
+  padding-top: 100px;
+  background-size: cover !important;
+  overflow: hidden;
+}
+.galeria-hacemos h2 {
+  font-family: 'Avenir-Black';
+  text-transform: uppercase;
+  font-size: 70px;
+  margin: 0 0 25px 0;
+  color: #fff;
+  line-height: 57px;
+  background: url('../img/background/line-title.png') no-repeat bottom center;
+  padding-bottom: 30px;
+  float: left;
+}
+.galeria-hacemos h2 span {
+  font-size: 60px;
+}
+.galeria-hacemos p {
+  font-family: 'Avenir Next Bold';
+  line-height: 22px;
+  color: #fff;
+  clear: both;
+  width: 100%;
+}
+.galeria-hacemos.tours {
+  background: url('../img/background/bg-aves-1.png') no-repeat top center;
+}
+.galeria-hacemos.tours h2 {
+  background: url('../img/background/line-title2.png') no-repeat bottom center;
+}
+.galeria-hacemos.tours .bnts {
+  margin-top: 40px;
+  float: left;
+  max-width: 400px;
+}
+.galeria-hacemos.tours h2,
+.galeria-hacemos.tours p {
+  color: #188a5e;
+}
+.galeria-hacemos.tailor {
+  background: url('../img/background/bg-aves-2.png') no-repeat top center;
+}
+.galeria-hacemos.tailor .solicita {
+  background: #2ea7b2;
+  color: #fff;
+  padding: 0 40px;
+  font-family: 'Avenir-Black';
+  font-size: 27px;
+  line-height: 48px;
+  display: inline-block;
+  margin-top: 60px;
+}
+.galeria-hacemos.turismo {
+  background: url('../img/background/bg-aves-3.png') no-repeat top center;
+}
+.galeria-hacemos.turismo .conoce {
+  background: #c8e55e;
+  color: #fff;
+  padding: 0 40px;
+  font-family: 'Avenir-Black';
+  font-size: 27px;
+  line-height: 48px;
+  display: inline-block;
+  margin-top: 60px;
+}
+.cont-galeria-hacemos {
+  background: #209e6d;
+  padding-bottom: 40px;
+}
+footer {
+  background-color: #035d3a;
+  padding: 25px 15px;
+  clear: both;
+}
+footer p {
+  color: #fff;
+  font-size: 14px;
+  font-family: "Arial";
+  margin: 0;
+  display: inline-block;
+  vertical-align: top;
+}
+footer .by {
+  display: inline-block;
+  vertical-align: top;
+  float: right;
+}
+footer .by span {
+  margin-right: 10px;
+  line-height: 34px;
+  color: #fff;
+  float: left;
+}
+footer .by img {
+  float: left;
+}
+.banner-home {
+  background: url('../img/background/bg-banner-home.jpg') no-repeat top center;
+}
+.banner-home .copy-banner h1 {
+  background: url('../img/background/line-title.png') no-repeat bottom center;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: 'Avenir-Black';
+  margin: 0;
+  font-size: 120px;
+  padding-bottom: 600px;
+  padding-top: 300px;
+  margin-left: 170px;
+  float: left;
+  padding-bottom: 20px;
+}
+.banner-home .copy-banner h2 {
+  margin-left: 211px;
+  margin-top: -10px;
+}
+.banner-home .copy-banner h3 {
+  margin-left: 0;
+  margin-top: -10px;
+}
+body.home {
+  background: #eeeeee;
+}
+.cont-info-banner {
+  overflow: hidden;
+  padding-top: 110px;
+}
+.info-top-home {
+  background: url('../img/background/bg-info-home.png') no-repeat top center;
+  max-width: 550px;
+  overflow: hidden;
+  padding: 40px 40px 0 40px;
+}
+.info-top-home .bg {
+  width: 450px;
+  height: auto;
+  background: #fff;
+  padding: 40px 40px 30px 40px;
+  overflow: hidden;
+}
+.info-top-home .bg h2 {
+  color: #40a943;
+  font-size: 33px;
+  font-family: 'Avenir-Black';
+  margin: 0 0 10px 0;
+}
+.info-top-home .bg h3 {
+  margin: 0 0 30px 0;
+  color: #209e6d;
+  font-size: 20px;
+  font-family: 'Avenir Medium';
+}
+.info-top-home .bg p {
+  color: #979797;
+  font-size: 20px;
+  font-family: 'Avenir-Black';
+  line-height: 24px;
+  margin-bottom: 20px;
+}
+.info-top-home .bg figure {
+  margin-bottom: 30px;
+}
+.info-top-home .bg ul {
+  list-style: none;
+  color: #979797;
+  padding: 0;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+.info-top-home .bg ul li {
+  font-family: 'Avenir Medium';
+  padding-left: 45px;
+  margin-bottom: 4px;
+  line-height: 27px;
+}
+.info-top-home .bg ul li.fecha {
+  background: url('../img/icon/icon-fecha.png') no-repeat left center;
+}
+.info-top-home .bg ul li.nombre {
+  background: url('../img/icon/icon-nombre.png') no-repeat left center;
+}
+.info-top-home .bg ul li.majestic {
+  background: url('../img/icon/icon-majestic.png') no-repeat left center;
+}
+.info-top-home .btns {
+  width: 100%;
+  clear: both;
+  color: #fff;
+  text-align: center;
+  line-height: 50px;
+  font-family: 'Avenir-Black';
+  font-size: 30px;
+  display: block;
+}
+.info-top-home .btns.mas {
+  background: #2ea7b2;
+  margin-bottom: 15px;
+}
+.info-top-home .btns.comprar {
+  background: #58b22e;
+}
+.info-top-home.turs-home {
+  margin-top: 250px;
+}
+.height-marco1 {
+  height: 384px;
+}
+.cont-itinerario {
+  padding-top: 80px;
+  padding-bottom: 130px;
+}
+.info-itinerario h2 {
+  font-family: 'Avenir-Black';
+  font-size: 85px;
+  color: #209e6d;
+  margin: 0 0 10px 0;
+}
+.info-itinerario p,
+.info-itinerario ul {
+  color: #58b22e;
+  font-size: 19px;
+  margin: 0 0 20px 0;
+  font-family: 'Avenir-Black';
+}
+.info-itinerario ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px 0;
+}
+.info-itinerario .btns {
+  width: 100%;
+  clear: both;
+  color: #fff;
+  text-align: center;
+  line-height: 50px;
+  font-family: 'Avenir-Black';
+  font-size: 30px;
+  display: block;
+}
+.info-itinerario .btns.mas {
+  background: #2ea7b2;
+  margin-bottom: 15px;
+}
+.info-itinerario .btns.comprar {
+  background: #58b22e;
+}
+.info-itinerario ul li {
+  padding-left: 45px;
+  margin-bottom: 4px;
+}
+.info-itinerario ul li.fecha {
+  background: url('../img/icon/icon-fecha.png') no-repeat left center;
+}
+.info-itinerario ul li.nombre {
+  background: url('../img/icon/icon-nombre.png') no-repeat left center;
+}
+.info-itinerario ul li.majestic {
+  background: url('../img/icon/icon-majestic.png') no-repeat left center;
+}
+.cont-itinerario .paisaje figure {
+  padding-bottom: 30px;
+}
+.cont-itinerario .paisaje h3 {
+  font-family: 'Avenir-Black';
+  font-size: 25px;
+  color: #58b22e;
+  background: url('../img/icon/ping-large.png') no-repeat left top;
+  line-height: 31px;
+  padding-left: 40px;
+  margin: 0 0 15px 0;
+}
+.cont-itinerario .paisaje ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.cont-itinerario .paisaje ul li {
+  background: url('../img/icon/ping-min.png') no-repeat left top;
+  float: left;
+  color: #209e6d;
+  margin-right: 15px;
+  line-height: 20px;
+  font-family: 'Avenir-Black';
+  padding-left: 22px;
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+.cont-itinerario .paisaje ul li a {
+  color: #209e6d;
+}
+.guias-home {
+  background: url('../img/background/bg-guias-home.png') no-repeat top center;
+  text-align: center;
+  padding-bottom: 150px;
+  min-height: 850px;
+}
+.guias-home figure {
+  position: relative;
+  text-align: center;
+  padding: 0 15px;
+  margin-top: -45px;
+  display: inline-block;
+  vertical-align: top;
+}
+.guias-home figure h2 {
+  font-family: 'Amarillo';
+  color: #fff;
+  font-size: 39px;
+  position: absolute;
+  left: 155px;
+  top: 80px;
+}
+.guias-home .btn-red {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: -60px;
+  padding: 0 35px;
+  clear: both;
+  color: #fff;
+  text-align: center;
+  line-height: 50px;
+  font-family: 'Avenir-Black';
+  font-size: 30px;
+  background: #fc6262;
+  position: relative;
+  z-index: 1;
+}
+.aliados-home {
+  text-align: center;
+  position: hidden;
+  padding: 40px 15px;
+}
+.aliados-home figure {
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 20px;
+}
+.aliados-home h3 {
+  color: #209e6d;
+  font-size: 25px;
+  font-family: 'Avenir-Black';
+  display: block;
+  margin-bottom: 30px;
+}
+.bg-contacto-home {
+  background: #197d55;
+  overflow: hidden;
+  padding-bottom: 40px;
+}
+/*Section */
+/*END Section */
+/*Default styles*/
+.clr {
+  clear: both;
+  float: none;
+}
+.center {
+  margin: auto;
+}
+.inline {
+  display: inline-block;
+  vertical-align: top;
+}
+.inline-bottom {
+  display: inline-block;
+  vertical-align: bottom;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.full {
+  clear: both;
+  width: 100%;
+}
+.wrapper-main {
+  max-width: 1160px;
+}
+
+/*Fin Main css Birding*/
+
+
+/*Inicio Main Responsive css Birding*/
+
+/* ------------------------------Ipad Horizontal---------------------------- */
+@media handheld, only screen and (min-width: 768px) and (max-width: 1024px){}
+
+/* ------------------------------Ipad Vertical---------------------------- */
+@media handheld, only screen and (min-width: 768px) and (max-width: 1023px) {}
+
+/* ---------------------------- 320px-640px -------------------------- */
+@media handheld, only screen and (max-width: 667px) {
+  #nav-icon{display: block !important;}
+  header{
+    text-align: center;
+  }
+  header .right{
+    float: none !important;
+  }
+  header .main-menu{display: none;}
+  header .main-menu li{
+    display: block;
+    margin: 0 0 5px 0 !important;
+    width: 100%;
+  }
+  header .main-menu ul li a{padding-bottom: 14px;}
+  .main-menu li a{
+    display: block;
+  }
+  .info-anexo{
+    height: auto;
+  }
+  .info-anexo .mas{
+    position: relative;
+    bottom: 0;
+    margin-top: 15px;
+  }
+  header .main-menu{
+    margin-left: 0;
+      margin-top: 30px;
+  }
+  .cont-anexo{
+    padding-top: 40px;
+      padding-bottom: 20px;
+  }
+  header .nav-top{
+    margin-top: 45px;
+      border-top: 1px solid #7ec729;
+      padding-top: 15px;
+  }
+  header .nav-top ul li{margin-right: 0; width: 100%; margin-bottom: 6px;}
+  header .nav-top ul li a{margin-bottom: 10px;}
+  header .nav-redes{margin-top: 20px;}
+  header .logo-birding{
+    max-width: 270px;
+      margin: 25px auto 0;
+      display: block;
+  }
+  .cont-search{
+    position: absolute;
+      top: 6px;
+      right: 55px;
+      width: 200px;
+      margin: 0;
+  }
+  header .cart{
+    top: 6px;
+      right: 15px;
+      position: absolute;
+      margin: 0;
+  }
+  .cont-contacto{padding: 0;}
+  .galeria-hacemos.tailor .solicita{
+    font-size: 23px;
+    margin-top: 30px;
+  }
+  .galeria-hacemos{
+    height: auto;
+      padding-top: 40px;
+      background-size: cover !important;
+      padding-bottom: 40px;
+      text-align: center;
+  }
+  .galeria-hacemos h2{font-size: 40px; float: none;}
+  .galeria-hacemos h2 span{font-size: 35px;}
+  .galeria-hacemos.turismo .conoce{margin-top: 30px;}
+  .title-ppal{
+    background: transparent;
+    font-size: 22px;
+  }
+  .title-ppal-2{display: none;}
+  .top-ave{
+    width: 90%;
+    margin: 0 auto 30px;
+    display: block;
+    text-align: center; 
+    padding: 15px;
+    border-radius: 10px 10px 0 20px;  
+  }
+  .top-ave figure{
+    position: relative;
+      bottom: 0;
+      left: 0;
+      right: 0; 
+      margin:0 auto 20px; 
+      max-width: 150px;   
+  }
+  .top-ave .info{
+    margin-left: 0;
+    padding: 0;
+  }
+  .top-ave .mas{
+    position: relative;
+    display: inline-block;
+      margin-top: 15px;
+  }
+  .top-ave .info h2{
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    padding: 5px 0;
+    text-align: center;
+  }
+  .quienes-somos p.info{
+    padding: 0 15px;
+  }
+  .nuestro-equipo h3{
+    font-size: 20px;
+      margin: -5px 0 30px 0;
+  }
+  .info-top-home .bg{
+    width: auto;
+    padding: 15px;
+  }
+  .height-marco1{height: auto;}
+  .info-top-home{padding: 0;}
+  .info-top-home.turs-home{margin-top: 30px;}
+  .cont-itinerario .paisaje h3{font-size: 18px;}
+  .info-itinerario{clear:both;}
+  .cont-itinerario .paisaje ul li{
+    display: block;
+    width: 100%;
+  }
+  .info-itinerario h2{font-size: 45px; padding-top: 30px;}
+  .guias-home{
+    padding-bottom: 0;
+      min-height: inherit;
+  }
+  footer{
+    overflow: hidden;
+    text-align: center;
+  }
+  footer .by{
+    float: none;
+      padding-top: 15px;
+  }
+  .cont-itinerario{padding-bottom: 85px;}
+  .banner-home{
+    background-size: 100%;
+  }
+  .banner-home .copy-banner{display: none;}
+}
+
+/*Fin Main Responsive css Birding*/
+
+
+
+/*********************
+LARGER MOBILE DEVICES
+This is for devices like the Galaxy Note or something that's
+larger than an iPhone but smaller than a tablet. Let's call them
+tweeners.
+*********************/
+@media only screen and (min-width: 481px) {
+  /******************************************************************
+  Site Name:
+  Author:
+  
+  Stylesheet: 481px and Up Stylesheet
+  
+  This stylesheet is loaded for larger devices. It's set to
+  481px because at 480px it would load on a landscaped iPhone.
+  This isn't ideal because then you would be loading all those
+  extra styles on that same mobile connection.
+  
+  A word of warning. This size COULD be a larger mobile device,
+  so you still want to keep it pretty light and simply expand
+  upon your base.scss styles.
+  
+  ******************************************************************/
+  /*
+  IMPORTANT NOTE ABOUT SASS 3.3 & UP
+  You can't use @extend within media queries
+  anymore, so just be aware that if you drop
+  them in here, they won't work.
+  */
+  /*********************
+  NAVIGATION STYLES
+  *********************/
+  /* .menu is clearfixed inside mixins.scss */
+  .menu {
+    /* end .menu ul */
+  }
+  .menu ul {
+    /* end .menu ul li */
+    /* highlight current page */
+    /* end current highlighters */
+  }
+  .menu ul li {
+    /*
+    plan your menus and drop-downs wisely.
+    */
+  }
+  .menu ul li a {
+    /*
+    you can use hover styles here even though this size
+    has the possibility of being a mobile device.
+    */
+  }
+
+  /* end .menu */
+  /*********************
+  POSTS & CONTENT STYLES
+  *********************/
+  /* entry content */
+  .entry-content {
+    /* at this larger size, we can start to align images */
+  }
+  .entry-content .alignleft, .entry-content img.alignleft {
+    margin-right: 1.5em;
+    display: inline;
+    float: left;
+  }
+  .entry-content .alignright, .entry-content img.alignright {
+    margin-left: 1.5em;
+    display: inline;
+    float: right;
+  }
+  .entry-content .aligncenter, .entry-content img.aligncenter {
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    clear: both;
+  }
+
+  /* end .entry-content */
+  /*********************
+  FOOTER STYLES
+  *********************/
+  /*
+  check your menus here. do they look good?
+  do they need tweaking?
+  */
+  /* end .footer-links */
+}
+/*********************
+TABLET & SMALLER LAPTOPS
+This is the average viewing window. So Desktops, Laptops, and
+in general anyone not viewing on a mobile device. Here's where
+you can add resource intensive styles.
+*********************/
+@media only screen and (min-width: 768px) {
+  /******************************************************************
+  Site Name:
+  Author:
+  
+  Stylesheet: Tablet & Small Desktop Stylesheet
+  
+  Here's where you can start getting into the good stuff.
+  This size will work on iPads, other tablets, and desktops.
+  So you can start working with more styles, background images,
+  and other resources. You'll also notice the grid starts to
+  come into play. Have fun!
+  
+  ******************************************************************/
+  /*********************
+  GENERAL STYLES
+  *********************/
+  /*********************
+  LAYOUT & GRID STYLES
+  *********************/
+  .wrap {
+    width: 760px;
+  }
+
+  /*********************
+  HEADER STYLES
+  *********************/
+  /*********************
+  NAVIGATION STYLES
+  *********************/
+  .nav {
+    border: 0;
+    /* end .menu ul li */
+    /* highlight current page */
+    /* end current highlighters */
+  }
+  .nav ul {
+    background: #323944;
+    margin-top: 0;
+  }
+  .nav li {
+    float: left;
+    position: relative;
+    /*
+    plan your menus and drop-downs wisely.
+    */
+    /* showing sub-menus */
+  }
+  .nav li a {
+    border-bottom: 0;
+    /*
+    you can use hover styles here even though this size
+    has the possibility of being a mobile device.
+    */
+  }
+  .nav li a:hover, .nav li a:focus {
+    color: #fff;
+    text-decoration: underline;
+  }
+  .nav li ul.sub-menu,
+  .nav li ul.children {
+    margin-top: 0;
+    border: 1px solid #ccc;
+    border-top: 0;
+    position: absolute;
+    visibility: hidden;
+    z-index: 8999;
+    /* highlight sub-menu current page */
+  }
+  .nav li ul.sub-menu li,
+  .nav li ul.children li {
+    /*
+    if you need to go deeper, go nuts
+    just remember deeper menus suck
+    for usability. k, bai.
+    */
+  }
+  .nav li ul.sub-menu li a,
+  .nav li ul.children li a {
+    padding-left: 10px;
+    border-right: 0;
+    display: block;
+    width: 180px;
+    border-bottom: 1px solid #ccc;
+  }
+  .nav li ul.sub-menu li:last-child a,
+  .nav li ul.children li:last-child a {
+    border-bottom: 0;
+  }
+  .nav li ul.sub-menu li ul,
+  .nav li ul.children li ul {
+    top: 0;
+    left: 100%;
+  }
+  .nav li:hover > ul {
+    top: auto;
+    visibility: visible;
+  }
+
+  /* end .nav */
+  /*********************
+  SIDEBARS & ASIDES
+  *********************/
+  .sidebar {
+    margin-top: 2.2em;
+  }
+
+  .widgettitle {
+    border-bottom: 2px solid #444;
+    margin-bottom: 0.75em;
+  }
+
+  .widget {
+    padding: 0 10px;
+    margin: 2.2em 0;
+  }
+  .widget ul li {
+    margin-bottom: 0.75em;
+    /* deep nesting */
+  }
+  .widget ul li ul {
+    margin-top: 0.75em;
+    padding-left: 1em;
+  }
+
+  /* links widget */
+  /* meta widget */
+  /* pages widget */
+  /* recent-posts widget */
+  /* archives widget */
+  /* tag-cloud widget */
+  /* calendar widget */
+  /* category widget */
+  /* recent-comments widget */
+  /* search widget */
+  /* text widget */
+  /*********************
+  FOOTER STYLES
+  *********************/
+  /*
+  you'll probably need to do quite a bit
+  of overriding here if you styled them for
+  mobile. Make sure to double check these!
+  */
+  .footer-links ul li {
+    /*
+    be careful with the depth of your menus.
+    it's very rare to have multi-depth menus in
+    the footer.
+    */
+  }
+
+  /* end .footer-links */
+}
+/*********************
+DESKTOP
+This is the average viewing window. So Desktops, Laptops, and
+in general anyone not viewing on a mobile device. Here's where
+you can add resource intensive styles.
+*********************/
+@media only screen and (min-width: 1030px) {
+  /******************************************************************
+  Site Name:
+  Author:
+  
+  Stylesheet: Desktop Stylsheet
+  
+  This is the desktop size. It's larger than an iPad so it will only
+  be seen on the Desktop.
+  
+  ******************************************************************/
+  .wrap {
+    width: 1040px;
+  }
+}
+/*********************
+LARGE VIEWING SIZE
+This is for the larger monitors and possibly full screen viewers.
+*********************/
+@media only screen and (min-width: 1240px) {
+  /******************************************************************
+  Site Name: 
+  Author: 
+  
+  Stylesheet: Super Large Monitor Stylesheet
+  
+  You can add some advanced styles here if you like. This kicks in
+  on larger screens.
+  
+  ******************************************************************/
+}
+/*********************
+RETINA (2x RESOLUTION DEVICES)
+This applies to the retina iPhone (4s) and iPad (2,3) along with
+other displays with a 2x resolution. You can also create a media
+query for retina AND a certain size if you want. Go Nuts.
+*********************/
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+  /******************************************************************
+  Site Name: 
+  Author: 
+  
+  Stylesheet: Retina Screens & Devices Stylesheet
+  
+  When handling retina screens you need to make adjustments, especially
+  if you're not using font icons. Here you can add them in one neat
+  place.
+  
+  ******************************************************************/
+  /* 
+  
+  EXAMPLE 
+  Let's say you have an image and you need to make sure it looks ok
+  on retina screens. Let's say we have an icon which dimension are
+  24px x 24px. In your regular stylesheets, it would look something
+  like this:
+  
+  .icon {
+  	width: 24px;
+  	height: 24px;
+  	background: url(img/test.png) no-repeat;
+  }
+  
+  For retina screens, we have to make some adjustments, so that image
+  doesn't look blurry. So, taking into account the image above and the
+  dimensions, this is what we would put in our retina stylesheet:
+  
+  .icon {
+  	background: url(img/test@2x.png) no-repeat;
+  	background-size: 24px 24px;
+  }
+  
+  So, you would create the same icon, but at double the resolution, meaning 
+  it would be 48px x 48px. You'd name it the same, but with a @2x at the end
+  (this is pretty standard practice). Set the background image so it matches
+  the original dimensions and you are good to go. 
+  
+  */
+}
+/*********************
+PRINT STYLESHEET
+Feel free to customize this. Remember to add things that won't make
+sense to print at the bottom. Things like nav, ads, and forms should
+be set to display none.
+*********************/
+@media print {
+  /******************************************************************
+  Site Name:
+  Author:
+  
+  Stylesheet: Print Stylesheet
+  
+  This is the print stylesheet. There's probably not a lot
+  of reasons to edit this stylesheet. If you want to
+  though, go for it.
+  
+  ******************************************************************/
+  * {
+    background: transparent !important;
+    color: black !important;
+    text-shadow: none !important;
+    filter: none !important;
+    -ms-filter: none !important;
+  }
+
+  a, a:visited {
+    color: #444 !important;
+    text-decoration: underline;
+  }
+  a:after, a:visited:after {
+    content: " (" attr(href) ")";
+  }
+  a abbr[title]:after, a:visited abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
+
+  pre, blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr, img {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  @page {
+    margin: 0.5cm;
+  }
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+
+  .sidebar,
+  .page-navigation,
+  .wp-prev-next,
+  .respond-form,
+  nav {
+    display: none;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

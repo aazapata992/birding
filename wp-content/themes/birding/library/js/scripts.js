@@ -105,6 +105,51 @@ function loadGravatars() {
 } // end function
 
 
+function initPin() {
+    TweenMax.to(".pin", 0.1, { scale: 1 });
+}
+
+function removePin() {
+    jQuery("li#pin1, li#pin2, li#pin3, li#pin4, li#pin5, li#pin6").removeClass("active");
+    TweenMax.to(".items-map li", 0.5, { scale: 1, alpha: 1 });
+}
+
+function eventPin(id, child, time) {
+    removePin();
+    jQuery(id).toggleClass("active");
+    TweenMax.to(".items-map li:nth-child("+ child +")", time, { scale: 0.95, alpha: 0.6 });
+
+    jQuery.each(_routes, function(key, route) {
+        if (route.pin === id) {
+            var galleries = '';
+
+            jQuery('#route-galleries').html('');            
+            jQuery('#route-checklist').attr('href', route.checklist);
+            jQuery('#route-singing').attr('href', route.singing);
+            jQuery('#route-endemic').attr('href', route.endemic);
+            jQuery('#route-download').attr('href', route.download);
+            jQuery('#route-count').text(route.count);
+            jQuery('#route-shop').attr('href', route.shop);
+
+            jQuery.each(route.gallery, function(key, gallery) {
+                galleries += '<div class="pic-gallery col-md-4">'+
+                                '<img class="block-center img-responsive" src='+ gallery.url +' alt="">'+
+                              '</div>';
+            });
+
+            jQuery('#route-galleries').html(galleries);
+        }
+    });
+}
+
+function mousePin(id) {
+    TweenMax.to(".map", 1.2, { scale: 0.95, ease: Expo.easeOut });
+    TweenMax.to(".float li.layer:nth-child(1)", 1.2, { rotation: 5 });
+    TweenMax.to(".float li.layer:nth-child(3)", 1.2, { rotation: -3 });
+    TweenMax.to(id, 0.1, { scale: 1.5 });
+    initPin();
+}
+
 /*
  * Put all your regular jQuery in here.
 */
@@ -141,10 +186,69 @@ jQuery(document).ready(function($) {
         pagination : false,
         navigationText : [" "," "]
     });
-
     
 
-   
-    
+    if (jQuery('#route-magestic').is('div')) {
+        jQuery("#pin1, .items-map li:nth-child(1)").click(function() {
+            eventPin("#pin1", 1, 0.5);
+        });
+
+        jQuery("#pin2, .items-map li:nth-child(2)").click(function() {
+            eventPin("#pin2", 2, 0.5);
+        });
+
+        jQuery("#pin3, .items-map li:nth-child(3)").click(function() {
+            eventPin("#pin3", 3, 1.2);
+        });
+
+        jQuery("#pin4, .items-map li:nth-child(4)").click(function() {
+            eventPin("#pin4", 4, 0.5);
+        });
+
+        jQuery("#pin5, .items-map li:nth-child(5)").click(function() {
+            eventPin("#pin5", 5, 0.5);
+        });
+
+        jQuery("#pin6, .items-map li:nth-child(6)").click(function() {
+            eventPin("#pin6", 6, 0.5);
+        });
+
+        jQuery("#pin3").click(function() {
+            jQuery("#pin2").toggleClass("active");
+            jQuery("#pin1").removeClass("active");
+            jQuery("#pin2").removeClass("active");
+        });
+
+
+        jQuery("#pin1, .items-map li:nth-child(1)").mouseover(function() {
+            mousePin("#pin1");
+        });
+
+        jQuery("#pin2, .items-map li:nth-child(2)").mouseover(function() {
+            mousePin("#pin2");
+        });
+
+        jQuery("#pin3, .items-map li:nth-child(3)").mouseover(function() {
+            mousePin("#pin3");
+        });
+
+        jQuery("#pin4, .items-map li:nth-child(4)").mouseover(function() {
+            mousePin("#pin4");
+        });
+
+        jQuery("#pin5, .items-map li:nth-child(5)").mouseover(function() {
+            mousePin("#pin5");
+        });
+
+        jQuery("#pin6, .items-map li:nth-child(6)").mouseover(function() {
+            mousePin("#pin6");
+        });
+        
+        jQuery(".pin, .items-map li").mouseleave(function() {
+            TweenMax.to(".map", 1.2, { scale: 1 });
+            TweenMax.to(".float li.layer:nth-child(1), .float li.layer:nth-child(3)", 1.2, { rotation: 0 });
+            TweenMax.to("#pin1, #pin2, #pin3, #pin4, #pin5, #pin6", 0.1, { scale: 1 });
+        });
+    }   
 
 }); /* end of as page load scripts */

@@ -2293,6 +2293,8 @@ body.home {
 }
 .info-top-home .btns.comprar {
   background: #58b22e;
+  position: relative;
+  left: -19px;
 }
 .info-top-home.turs-home {
   margin-top: 250px;
@@ -2338,6 +2340,8 @@ body.home {
 }
 .info-itinerario .btns.comprar {
   background: #58b22e;
+  position: relative;
+  left: -19px;
 }
 .info-itinerario ul li {
   padding-left: 45px;

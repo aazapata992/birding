@@ -22,7 +22,7 @@
                             <img src="<?php echo get_template_directory_uri(); ?>/library/images/aver-home-1.png" alt="">
                         </figure>
                         <div class="height-marco1">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ipsum nulla, scelerisque sed ex eget, suscipit facilisis mi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce lobortis iaculis enim, vel fringilla ante interdum id. In in justo ligula.</p> 
+                            <p>Colombia is home to a large variety of birds, its different climates and ecosystems provides them with the suitable conditions for them to thrive. Right now more than 1900 species can be found in our territory and over 75 are Endemic to it.</p> 
                         </div>
                         <a href="#" class="btns mas">Conocer más</a>
                         <a href="#" class="btns comprar">Comprar</a>

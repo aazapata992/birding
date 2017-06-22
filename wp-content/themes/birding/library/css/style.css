@@ -2446,6 +2446,65 @@ body.home {
   overflow: hidden;
   padding-bottom: 40px;
 }
+
+body.error404{
+ background: #129f6b;
+
+}
+#info-404{
+ margin-bottom: 115px;
+}
+#info-404 .ir-home{
+ position: absolute;
+    right: 0;
+    left: 0;
+    color: #fff;
+    background: #035d3a;
+    width: 118px;
+    margin: 0 auto;
+    font-family: 'Avenir-Black';
+    text-align: center;
+    line-height: 40px;
+    top: 75%;
+}
+#info-404 h1{
+ font-family: 'Avenir-Black';
+    font-size: 57px;
+    top: 13%;
+    padding-bottom: 25px;
+}
+#info-404 p{
+ font-family: 'Avenir-Black';
+    font-size: 25px;
+    top: 45%;
+    padding-bottom: 25px;
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+.bg-search{
+ background: #7ec627;
+    border-top: 2px solid #fff;
+    padding-top: 30px;
+    color: #fff;
+}
+.bg-search h1.title-ppal{
+ position: relative;
+ top: 0;
+ padding-top: 30px;
+ margin: 0 0 25px 0;
+ font-family: 'Avenir-Black';
+
+}
+.bg-search a{
+ color: #fff;
+}
+.bg-search h3{
+ font-family: 'Avenir-Black';
+
+}
 /*Section */
 /*END Section */
 /*Default styles*/

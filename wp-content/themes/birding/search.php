@@ -1,7 +1,8 @@
 <?php get_header(); ?>
 
-<h1 class="title-ppal">SEARCH RESULTS</h1>
+
 <div class="bg-search full">
+<h1 class="title-ppal">SEARCH RESULTS</h1>
 	<div class="wrapper-main center result-search">
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
@@ -9,12 +10,12 @@
 			<div class="result col-xs-12 col-sm-6 col-md-6 col-lg-6">
 
 				<article id="post-<?php the_ID(); ?>" <?php post_class('cf '); ?> role="article" class="" >
-					<a href="<?php the_permalink() ?>">
+					<!-- <a href="<?php //the_permalink() ?>">
 						<figure>
-							<?php the_post_thumbnail('bones-thumb-456'); ?>
+							<?php //the_post_thumbnail('bones-thumb-456'); ?>
 						</figure>
 					</a>
-					<div class="info">
+ -->					<div class="info">
 						<h3 class="search-title entry-title">
 							<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 								<?php the_title(); ?>

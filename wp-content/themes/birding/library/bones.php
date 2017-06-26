@@ -125,10 +125,11 @@ function bones_scripts_and_styles() {
   if (!is_admin()) {
 
 		wp_register_style( 'birding-normalize-css', get_stylesheet_directory_uri() . '/library/css/normalize.css' );		
-		wp_register_style( 'birding-bootstrap-css', get_stylesheet_directory_uri() . '/library/includes/widgets/bootstrap-3/css/bootstrap.min.css' );
+		wp_register_style( 'birding-bootstrap-css', get_stylesheet_directory_uri() . '/library/includes/widgets/bootstrap-4/css/bootstrap.min.css' );
 		wp_register_style( 'birding-animate-css', get_stylesheet_directory_uri() . '/library/css/animate.css', array(), '', 'all' );
 		wp_register_style( 'birding-owl-css', get_stylesheet_directory_uri() . '/library/css/owl.carousel.css', array(), '', 'all' );
 		wp_register_style( 'birding-owl-theme-css', get_stylesheet_directory_uri() . '/library/css/owl.theme.css', array(), '', 'all' );
+		wp_register_style( 'birding-lightbox-css', get_stylesheet_directory_uri() . '/library/css/lightbox.css', array(), '', 'all' );
 
 		wp_register_script( 'birding-owl-js', get_stylesheet_directory_uri() . '/library/js/libs/owl.carousel.min.js' );
 		wp_register_script( 'birding-classiesearch-js', get_stylesheet_directory_uri() . '/library/js/libs/classiesearch.js' );
@@ -141,8 +142,10 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'birding-uniform-js', get_stylesheet_directory_uri() . '/library/js/libs/jquery.uniform.min.js' );
 		wp_register_script( 'birding-prefixfree-js', get_stylesheet_directory_uri() . '/library/js/libs/prefixfree.min.js' );
 		wp_register_script( 'birding-wow-js', get_stylesheet_directory_uri() . '/library/js/libs/wow.js', null, '', true );
-		wp_register_script( 'birding-bootstrap-js', get_stylesheet_directory_uri() . '/library/includes/widgets/bootstrap-3/js/bootstrap.min.js' );
+		wp_register_script( 'birding-tether-js', get_stylesheet_directory_uri() . '/library/js/libs/tether.min.js', null, '', true );
+		wp_register_script( 'birding-bootstrap-js', get_stylesheet_directory_uri() . '/library/includes/widgets/bootstrap-4/js/bootstrap.min.js', null, '', true );
 		wp_register_script( 'birding-tweenmax-js', get_stylesheet_directory_uri() . '/library/js/libs/TweenMax.min.js', null, '', true );
+		wp_register_script( 'birding-lightbox-js', get_stylesheet_directory_uri() . '/library/js/libs/lightbox.min.js', null, '', true );
 
 		// register main stylesheet
 		wp_register_style( 'bones-stylesheet', get_stylesheet_directory_uri() . '/library/css/style.css', array(), '', 'all' );
@@ -163,15 +166,19 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'birding-jquery-ui-js' );	
 		wp_enqueue_script( 'birding-uniform-js' );		
 		wp_enqueue_script( 'birding-prefixfree-js' );		
+		wp_enqueue_script( 'birding-tether-js' );
 		wp_enqueue_script( 'birding-bootstrap-js' );
 		wp_enqueue_script( 'birding-tweenmax-js' );
 		wp_enqueue_script( 'birding-wow-js' );
+		wp_enqueue_script( 'birding-lightbox-js' );
+
 		wp_enqueue_style( 'birding-normalize-css' );
 		wp_enqueue_style( 'birding-animate-css' );
 		wp_enqueue_style( 'birding-owl-css' );
 		wp_enqueue_style( 'birding-owl-theme-css' );
 		wp_enqueue_style( 'birding-bootstrap-css' );
 		wp_enqueue_script( 'birding-owl-js' );
+		wp_enqueue_style( 'birding-lightbox-css' );
 
 		wp_enqueue_script( 'birding-classiesearch-js' );
 		wp_enqueue_script( 'birding-uisearch-js' );

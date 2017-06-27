@@ -3123,7 +3123,20 @@ be set to display none.
   }
 }
 
-/*Ruta Magestic */
+/* Ruta Magestic */
+.margin-top-55 {
+  margin-bottom: 55px;
+}
+
+.background-full {
+  background: #eeeeee;
+}
+
+.font-height {
+  font-family: Arial;
+  font-style: italic;
+}
+
 .wrap-map {
   background: #209e6d;
   width: 100%;
@@ -3240,7 +3253,7 @@ be set to display none.
 
 .items-map li p {
   display: inline-block;
-  font-size: 19px;
+  font-size: 18px;
   margin: 0;
   vertical-align: middle;
 }
@@ -3333,8 +3346,17 @@ a.btn-map p {
 }
 
 .pic-gallery {
-  padding: 10px !important;
-  overflow: hidden;
+  background-color: white;
+  background-position: center;
+  background-size: cover;
+  border: 2px solid white;
+  border-radius: 5%;
+  cursor: pointer;
+  display: inline-block;
+  height: 62px;
+  margin: 0 2px;
+  vertical-align: top;
+  width: 20%;
 }
 
 .pic-gallery img {

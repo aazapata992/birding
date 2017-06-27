@@ -34,7 +34,7 @@
     <div class="wrapper-main center full cont-contacto">
         <div class="wrap-map" id="route-magestic">
             <div class="content-map">
-                <a class="btn-map" href="javascript:;">
+                <a class="btn-map" href="<?php the_field('link_map') ?>" target="_blank">
                     <img src="<?php echo get_template_directory_uri() ?>/library/images/route-magestic/btn-map.png" alt="">
                     <p>Ver mapa en Google</p>
                 </a>
@@ -87,10 +87,8 @@
                                 <?php foreach ($routes as $route): ?>
                                     <?php if ($route['pin'] === "1"): ?>
                                         <?php $galleries = $route['gallery'] ?>
-                                        <?php foreach ($galleries as $gallery): ?>
-                                            <div class="pic-gallery col-md-4">
-                                                <img class="block-center img-responsive" src="<?php echo $gallery['url'] ?>" alt="">
-                                            </div>
+                                        <?php foreach ($galleries as $key => $gallery): ?>
+                                            <a href="<?php echo $gallery['url'] ?>?image=<?php echo $key ?>" data-toggle="lightbox" data-gallery="example-gallery" class="pic-gallery" style="background-image: url(<?php echo $gallery['url'] ?>)"></a>
                                         <?php endforeach ?>
                                     <?php endif ?>
                                 <?php endforeach ?>
@@ -102,19 +100,19 @@
                                     <?php if ($route['pin'] === "1"): ?>
                                         <li>
                                             <span><img src="<?php echo get_template_directory_uri() ?>/library/images/route-magestic/list.png" alt=""></span>
-                                            <a id="route-checklist" href="<?php echo $route['checklist'] ?>">Check List aves</a>
+                                            <a id="route-checklist" href="<?php echo $route['checklist'] ?>" target="_blank">Check List aves</a>
                                         </li>
                                         <li>
                                             <span><img src="<?php echo get_template_directory_uri() ?>/library/images/route-magestic/note.png" alt=""></span>
-                                            <a id="route-singing" href="<?php echo $route['singing'] ?>">Canto aves</a>
+                                            <a id="route-singing" href="<?php echo $route['singing'] ?>" target="_blank">Canto aves</a>
                                         </li>
                                         <li>
                                             <span><img src="<?php echo get_template_directory_uri() ?>/library/images/route-magestic/bird.png" alt=""></span>
-                                            <a id="route-endemic" href="<?php echo $route['endemic'] ?>">Endemicos</a>
+                                            <a id="route-endemic" href="<?php echo $route['endemic'] ?>" target="_blank">Endemicos</a>
                                         </li>
                                         <li>
                                             <span><img src="<?php echo get_template_directory_uri() ?>/library/images/route-magestic/download.png" alt=""></span>
-                                            <a id="route-download" href="<?php echo $route['download'] ?>">Descargar itinerario</a>
+                                            <a id="route-download" href="<?php echo $route['download'] ?>" target="_blank">Descargar itinerario</a>
                                         </li>
                                     <?php endif ?>
                                 <?php endforeach ?>
@@ -140,8 +138,7 @@
     </div>
     <div class="clr"></div>
 </div>
-
-<section class="full" style="background: #eeeeee;">
+<section class="full margin-top-55 background-full">
     <div class="wrapper-main center">
         <div class="cont-info-banner">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -151,32 +148,35 @@
                         <h2><?php the_field('subtitulo'); ?></h2>
                         <figure>
                             <?php $image = get_field('imagen'); ?>
-                            <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>">
+                            <img src="<?php echo $image['url'] ?>" alt="<?php echo $image['alt'] ?>">
                         </figure>
-
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                             <div class="height-marco1">
-                                <p><?php the_field('descripcion'); ?></p>
-
-                                <p style="font-family: arial;font-style: italic;"><img src="<?php echo get_template_directory_uri() ?>/library/images/1.jpg" alt=""> <?php the_field('altura_clima'); ?></p>
-                                <p style="font-family: arial;font-style: italic;"><img src="<?php echo get_template_directory_uri() ?>/library/images/2.jpg" alt=""> <?php the_field('vestuario'); ?></p>
-                                <p style="font-family: arial;font-style: italic;"><img src="<?php echo get_template_directory_uri() ?>/library/images/3.jpg" alt=""> <?php the_field('condiciones_medicas'); ?></p>
-                                <p style="font-family: arial;font-style: italic;"><img src="<?php echo get_template_directory_uri() ?>/library/images/4.jpg" alt=""> <?php the_field('nivel_dificultad'); ?></p>
+                                <p><?php the_field('descripcion') ?></p>
+                                <p class="font-height">
+                                    <img src="<?php echo get_template_directory_uri() ?>/library/images/1.jpg" alt=""> <?php the_field('altura_clima') ?>
+                                </p>
+                                <p class="font-height">
+                                    <img src="<?php echo get_template_directory_uri() ?>/library/images/2.jpg" alt=""> <?php the_field('vestuario') ?>
+                                </p>
+                                <p class="font-height">
+                                    <img src="<?php echo get_template_directory_uri() ?>/library/images/3.jpg" alt=""> <?php the_field('condiciones_medicas') ?>
+                                </p>
+                                <p class="font-height">
+                                    <img src="<?php echo get_template_directory_uri() ?>/library/images/4.jpg" alt=""> <?php the_field('nivel_dificultad') ?>
+                                </p>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <!-- <a href="#" class="btns comprar">Comprar</a> -->
                         </div>
-                        <!-- <a href="#" class="btns comprar">Comprar</a> -->
                     </div>
                 </article>
             </div>
         </div>
     </div>
 </section>
-<br>
-<br>
-<br>
-<section class="guias-home full">
+<section class="guias-home full margin-top-55">
     <div class="wrapper-main center">
         <figure>
             <h2>Guias</h2>
@@ -185,9 +185,6 @@
         <a href="#" class="btn-red">Conocer más</a>
     </div>
 </section>
-<br>
-<br>
-<br>
 <section class="bg-contacto-home">
     <div class="wrapper-main center full cont-contacto">
         <h2>Contacto</h2>

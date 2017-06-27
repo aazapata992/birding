@@ -132,9 +132,7 @@ function eventPin(id, child, time) {
             jQuery('#route-shop').attr('href', route.shop);
 
             jQuery.each(route.gallery, function(key, gallery) {
-                galleries += '<div class="pic-gallery col-md-4">'+
-                                '<img class="block-center img-responsive" src='+ gallery.url +' alt="">'+
-                              '</div>';
+                galleries +='<a href="'+ gallery.url +'?image='+ key +'" data-toggle="lightbox" data-gallery="example-gallery" class="pic-gallery" style="background-image: url('+ gallery.url +')"></a>';
             });
 
             jQuery('#route-galleries').html(galleries);
@@ -219,7 +217,6 @@ jQuery(document).ready(function($) {
             jQuery("#pin2").removeClass("active");
         });
 
-
         jQuery("#pin1, .items-map li:nth-child(1)").mouseover(function() {
             mousePin("#pin1");
         });
@@ -248,6 +245,11 @@ jQuery(document).ready(function($) {
             TweenMax.to(".map", 1.2, { scale: 1 });
             TweenMax.to(".float li.layer:nth-child(1), .float li.layer:nth-child(3)", 1.2, { rotation: 0 });
             TweenMax.to("#pin1, #pin2, #pin3, #pin4, #pin5, #pin6", 0.1, { scale: 1 });
+        });
+
+        jQuery(document).on('click', '[data-toggle="lightbox"]', function(event) {
+            event.preventDefault();
+            jQuery(this).ekkoLightbox();
         });
     }   
 

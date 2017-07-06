@@ -3517,6 +3517,13 @@ li.pin:hover .map {
   -webkit-transition: all .5s ease-in-out;
 }
 
+@media only screen and (max-width: 1366px) {
+  .wrap-map {
+    transform: scale(0.7);
+    margin-top: -90px;
+  }
+}
+
 @media only screen and (max-device-width: 420px) {
   .float li.layer:nth-child(1), 
   .float li.layer:nth-child(2), 
